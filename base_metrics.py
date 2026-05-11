@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+import os
 from typing import List, Union
 
 import pyiqa
@@ -12,11 +13,30 @@ from torchvision.transforms import ToTensor
 from typing import Tuple
 import numpy as np
 
-def get_torch_device():
-    """Return a torch device string preferring CUDA when available."""
+def get_torch_device() -> torch.device:
+    """
+    Device for perceptual/IQA backends.
+
+    `runner.py` sets `BENCH_TORCH_DEVICE` (e.g. `cuda:0`); CUDA is preferred when installed.
+    Falls back to CPU if CUDA/MPS unavailable.
+    """
+    pref = (os.environ.get("BENCH_TORCH_DEVICE") or "").strip()
+    if pref:
+        dev = torch.device(pref)
+        if dev.type == "cuda":
+            if not torch.cuda.is_available():
+                return torch.device("cpu")
+            idx = dev.index if dev.index is not None else 0
+            if idx >= torch.cuda.device_count():
+                return torch.device("cuda:0")
+            return torch.device(f"cuda:{idx}")
+        if dev.type == "mps" and torch.backends.mps.is_available():
+            return torch.device("mps")
+        if dev.type in ("cpu",):
+            return torch.device("cpu")
     if torch.cuda.is_available():
-        return torch.device("cuda")
-    if torch.backends.mps.is_available():
+        return torch.device("cuda:0")
+    if hasattr(torch.backends, "mps") and torch.backends.mps.is_available():
         return torch.device("mps")
     return torch.device("cpu")
 

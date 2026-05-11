@@ -1,6 +1,6 @@
 import numpy as np
 
-from ..base_metrics import BaseMetric
+from base_metrics import BaseMetric
 
 from torchmetrics.image import StructuralSimilarityIndexMeasure
 

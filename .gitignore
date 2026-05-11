@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.pytest_cache/
+.mypy_cache/
+
+# Runtime outputs
+dimension_description_json/
+frames_cache/
+results/
+qa_alignment_questions/**/*.tmp
+
+*.npz
+
+# Large artefacts (download separately)
+checkpoints/*.pth
+*.pt

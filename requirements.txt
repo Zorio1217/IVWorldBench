@@ -1,72 +1,13 @@
-# Install PyTorch with CUDA 11.8 first:
-#   pip install torch==2.5.1 torchvision==0.20.1 torchaudio==2.5.1 --index-url https://download.pytorch.org/whl/cu118
-# Then: pip install -r requirements.txt
---extra-index-url https://download.pytorch.org/whl/cu118
+# GPU 主机：请先安装带 CUDA 的 PyTorch wheel，再从 https://pytorch.org 选对应 CUDA 版本
+# Example (CUDA 12.1):
+#   pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
 
-accelerate>=1.0.0
-attrs==24.3.0
-av
-datasets
-decorator==5.1.1
-decord==0.6.0
-diffusers==0.32.1
-einops==0.8.0
-einops-exts==0.0.4
-ftfy
-huggingface-hub
-icecream==2.1.8
-imageio
-imageio-ffmpeg
-mmcv-lite==2.2.0
-mmdet==3.0.0
-mmengine==0.10.5
-model-index==0.1.11
-nvitop==1.5.3
-omegaconf==2.3.0
-opencv-python
-opendatalab==0.0.10
-openmim==0.3.9
-openxlab==0.0.11
-peft
-pillow
-pyiqa
-qwen-vl-utils==0.0.11
-safetensors
-scikit-image
-scikit-learn
-scipy
-seaborn
-sentencepiece
-spacy
-tabulate
-tensorboard
-termcolor
-terminaltables
-thop
-timesformer-pytorch
-timm
-tokenizers
-torchmetrics
-tqdm
-transformers==4.53.0 
-wandb
-yolov5
-openai
-keye_vl_utils
-gdown
-scenedetect
-decord
-pyyaml
-opencv-python
-click
-scikit-video
-lietorch
-torch_scatter
-cvxpy
-cffi
-clarabel
-cvxpy
-highspy
-osqp
-pycparser
-scs
+numpy>=1.23
+opencv-python-headless>=4.8
+tqdm>=4.65
+Pillow>=9.5
+
+torchmetrics>=1.4.0
+torchvision>=0.16
+pyiqa>=0.1.12
+ultralytics>=8.0
